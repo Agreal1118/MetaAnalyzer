@@ -1,9 +1,6 @@
 from gensim.models import word2vec
-import sys
-from gensim.models import word2vec
 from tqdm import tqdm
 from Bio import SeqIO
-from pyfasta import Fasta
 
 
 def binary_nucleo():
@@ -80,7 +77,7 @@ def load_dnavec(model_fname):
 
 class DnaVec(word2vec.Word2Vec):
 
-    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="corpus.txt",  sg=1, window=25, min_count=1, workers=3):
+    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="dane/dnaVecCorpus.txt",  sg=1, window=25, min_count=1, workers=3):
         """
         Either fname or corpus is required.
 
@@ -99,11 +96,16 @@ class DnaVec(word2vec.Word2Vec):
             raise Exception("Either fasta_fname or corpus is needed!")
 
         if fasta_fname is not None:
-            print('Generate Corpus file from fasta file...')
+            print('Generowanie pliku korpusu z pliku fasta...')
             generate_corpusfile(fasta_fname, n, corpus_fname)
+            print('Wczytywanie korpusu - to może trochę potrwać...')
+            corpus = word2vec.Text8Corpus(corpus_fname)
+        if fasta_fname is None and corpus == True:
+            print('Wczytywanie korpusu - to może trochę potrwać...')
             corpus = word2vec.Text8Corpus(corpus_fname)
 
         word2vec.Word2Vec.__init__(self, corpus, size=size, sg=sg, window=window, min_count=min_count, workers=workers)
+        print('Korpus wczytany pomyślnie')
 
     def to_vecs(self, seq):
         """
@@ -123,6 +125,3 @@ class DnaVec(word2vec.Word2Vec):
             dnavecs.append(sum(ngram_vecs))
         return dnavecs
 
-x = DnaVec('fragmenty.fasta')
-print(len(x.to_vecs('ATTGTTTTGATATGCTTCATAAGAATTTTCT')[0]))
-print(x.to_vecs('ATTGTTTTGATATGCTTCATAAGAATTTTCT'))
