@@ -1,3 +1,9 @@
+'''
+Do danych podglądowych
+Zadaniem pliku jest wzięcie losowej próbki z obu plików genomów 
+plastydowych i prokariotycznych, o rozmiarze 500 ustalanym w linii 17.
+'''
+
 from Bio import SeqIO
 import random
 def hundred():
