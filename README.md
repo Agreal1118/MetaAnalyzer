@@ -1,12 +1,7 @@
 # MetaAnalyzer
 Praca licencjacka o zastosowaniu uczenia maszynowego w badaniach metagenomicznych
 
-# MetaAnalyzer
-Praca licencjacka o zastosowaniu uczenia maszynowego oraz statystycznego do lepszego zrouzmienia badań metagenomicznych.
-
-
-Struktura projektu
-##################################
+# Struktura projektu
 
 1. dataset:
    fragmenty_plstd.fasta - losowa wybrana próbka 500 fragmnetów genomów mitochondrialnych
