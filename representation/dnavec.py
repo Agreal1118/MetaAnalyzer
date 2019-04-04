@@ -5,32 +5,32 @@ from Bio import SeqIO
 
 def binary_nucleo():
     '''
-    Binary representation of amino acid residue and amino acid sequence
+    Binary representation of DNA
     e.g.
-        'A' => [0, 0, 0, 0, 0]
-        'AGGP' => [[0, 0, 0, 0, 0], [0, 1, 1, 0, 1], [0, 1, 1, 0, 1], [0, 1, 1, 1, 1]]
+        'A' => [0, 0]
+        "ACCT" => [[0, 0], [0, 1], [0, 1], [1, 1]]
     '''
-    NUCLEOTIDE_BINARY_TABLE = {
+    DNA_BINARY_TABLE = {
         'A': [0, 0],
         'C': [0, 1],
         'G': [1, 0],
         'T': [1, 1],
     }
 
-    def convert_nucleotide_to_binary(nucleotide):
+    def convert_dna_to_binary(dna):
         '''
-        Convert amino acid to 1-dimentional 5 length binary array
-        "A" => [0, 0, 0, 0, 0]
+        Convert DNA to 1-dimentional 2 length binary array
+        "A" => [0, 0]
         '''
-        if not NUCLEOTIDE_BINARY_TABLE.has_key(nucleotide):
+        if not DNA_BINARY_TABLE.has_key(dna):
             return None
-        return NUCLEOTIDE_BINARY_TABLE[nucleotide]
+        return DNA_BINARY_TABLE[dna]
 
-    def convert_nucleotide_sequence_to_vector(sequence):
+    def convert_dna_sequence_to_vector(sequence):
         '''
-        "AGGP" => [[0, 0, 0, 0, 0], [0, 1, 1, 0, 1], [0, 1, 1, 0, 1], [0, 1, 1, 1, 1]]
+        "ACCT" => [[0, 0], [0, 1], [0, 1], [1, 1]]
         '''
-        binary_vector = [convert_nucleotide_to_binary(nucleotide) for nucleotide in sequence]
+        binary_vector = [convert_dna_to_binary(deo) for deo in sequence]
         if None in binary_vector:
             return None
         return binary_vector
@@ -38,7 +38,7 @@ def binary_nucleo():
 
 def split_ngrams(seq, n):
     """
-    'ACATGC' => [['ACA', 'TGC'], ['CAT'], ['ATG']]
+    'ACCTGC' => [['ACC', 'CCT'], ['CTG'], ['TGC']]
     """
     a, b, c = zip(*[iter(seq)]*n), zip(*[iter(seq[1:])]*n), zip(*[iter(seq[2:])]*n)
     str_ngrams = []
