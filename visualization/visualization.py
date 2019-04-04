@@ -60,7 +60,7 @@ def pca(sequances):
     ax.legend(targets)
     ax.grid()
     #plt.show()
-    plt.savefig('wyniki/pca.png')
+    plt.savefig('result/pca.png')
 
 
 def tsnesolo(sequances):
@@ -96,7 +96,7 @@ def tsnesolo(sequances):
     ax.legend(targets)
     ax.grid()
     # plt.show()
-    plt.savefig('wyniki/tsnesolo.png')
+    plt.savefig('result/tsnesolo.png')
 
 
 def tsnePcaReduction(sequances):
@@ -141,4 +141,4 @@ def tsnePcaReduction(sequances):
     ax.legend(targets)
     ax.grid()
     # plt.show()
-    plt.savefig('wyniki/tsnepca.png')
+    plt.savefig('result/tsnepca.png')

@@ -61,13 +61,24 @@ def generate_corpusfile(fasta_fname, n, corpus_fname):
         to generate corpus.
     '''
 
-    f = open(corpus_fname, "w")
+    # Akceptuje listę plików, bądź pojedynczy plik
 
-    for record in tqdm(SeqIO.parse(fasta_fname, "fasta"), desc='corpus generation progress'):
-        ngram_patterns = split_ngrams(record.seq, n)
-        for ngram_pattern in ngram_patterns:
-            f.write(" ".join(ngram_pattern) + "\n")
-    f.close()
+    if type(fasta_fname) is list:
+        f = open(corpus_fname, "w")
+        for file in fasta_fname:
+            for record in tqdm(SeqIO.parse(file, "fasta"), desc='corpus generation progress'):
+                ngram_patterns = split_ngrams(record.seq, n)
+                for ngram_pattern in ngram_patterns:
+                    f.write(" ".join(ngram_pattern) + "\n")
+        f.close()
+    else:
+        f = open(corpus_fname, "w")
+
+        for record in tqdm(SeqIO.parse(fasta_fname, "fasta"), desc='corpus generation progress'):
+            ngram_patterns = split_ngrams(record.seq, n)
+            for ngram_pattern in ngram_patterns:
+                f.write(" ".join(ngram_pattern) + "\n")
+        f.close()
 
 
 
@@ -77,7 +88,7 @@ def load_dnavec(model_fname):
 
 class DnaVec(word2vec.Word2Vec):
 
-    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="dane/dnaVecCorpus.txt",  sg=1, window=25, min_count=1, workers=3):
+    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="dataset/dnavec/dnaVecCorpus.txt",  sg=1, window=25, min_count=1, workers=3):
         """
         Either fname or corpus is required.
 
@@ -125,3 +136,5 @@ class DnaVec(word2vec.Word2Vec):
             dnavecs.append(sum(ngram_vecs))
         return dnavecs
 
+    def vectorising(self, ):
+        pass
