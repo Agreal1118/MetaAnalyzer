@@ -9,6 +9,8 @@ from Bio import SeqIO
 import visualization.visualization as visualization
 import classification.svm as svm
 import data_working.basic_working
+import os.path
+
 
 print ("Witaj w projekcie licencjackim dotyczącym klasyfikacji DNA! Pamiętaj o umieszczeniu koniecznych danych wejściowych (w "
        "formie pojedynczego pliku fasta zawierajacego w każdym rekordzie jeden pełny genom i nazwę gatunku w id,"
@@ -24,11 +26,12 @@ reprezentacja = input()
 print("Czy konieczna jest wstępna obróbka danych? (Czy dane nie są w 2 plikach genomy_plstd.fasta i genomy_prcr.fasta odpowiednio pofragmentowane?")
 odpo = input()
 if odpo == "tak" or odpo == "T" or odpo == "t" or odpo == "TAK":
-    data_working.basic_working.start("../input/TOBBGENOMES", "../input/plstd.fasta")
+    data_working.basic_working.start(os.path.dirname(__file__) + "/../input/TOBBGENOMES", os.path.dirname(__file__) + "/../input/plstd.fasta")
+
+# tworzenie pustej zmiennej na późniejsze wektory dnavec. lista ta będzie zawierała je wszystkie (format wektorów, wymiary 450)
+data = []
 
 if reprezentacja == "dnavec":
-    # tworzenie pustej zmiennej na późniejsze wektory dnavec. lista ta będzie zawierała je wszystkie (format wektorów, wymiary 450)
-    data = []
     # Do funkcjonowania tej metody reprezentacji konieczny jest korpus językowy (można go utworzyć, co jest długie, bądź wczytać z wcześniej zapisanego pliku
     print('Tworzyć nowy korpus? (T/N)')
     z = input()
@@ -37,7 +40,7 @@ if reprezentacja == "dnavec":
               "poprzedich prób, być może nie ma to sensu. Wpisz 'zrozumiałem' ")
         przypomnienie = input()
         if przypomnienie == 'zrozumiałem':
-            model = dnavec.DnaVec(['input/genomy_plstd', 'input/genomy_prcr'])
+            model = dnavec.DnaVec([os.path.dirname(__file__) +'/../input/genomy_plstd', os.path.dirname(__file__) + '/../input/genomy_prcr'])
     elif (z == 'N'):
         model = dnavec.DnaVec(corpus=True)
 

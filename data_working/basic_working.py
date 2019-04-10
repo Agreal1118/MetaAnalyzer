@@ -7,6 +7,7 @@ from Bio import SeqIO
 import textwrap
 from Bio import Seq
 from Bio.SeqRecord import SeqRecord
+import os.path
 
 
 
@@ -18,6 +19,8 @@ def start(prcr, plstd, dlugoscfragmentu = 500):
     :param dlugoscfragmentu:
     :return:
     '''
+
+    # Potrzbne zmienne
 
     # Wpierw genomy prokariotów i archeonów
     if prcr[:4] == '.fna' or prcr[:6] == '.fasta':
@@ -45,7 +48,7 @@ def whole_folder(nazwa, typgenomu, dlugoscfragmentu):
 
     outfilename = 'all_' + str((int(time.time()))) + ".fna"
 
-    with open("./dataset/genomy_" + typgenomu + ".fasta", "w") as output_handle:
+    with open(os.path.dirname(__file__) + "/../dataset/genomy_" + typgenomu + ".fasta", "w") as output_handle:
         for filename in glob.glob(nazwa + '/*.fna'):
             with open(filename) as handle:
                 for record in SeqIO.parse(handle, 'fasta'):
@@ -72,7 +75,7 @@ def single_file(nazwa, typgenomu, dlugosc):
     '''
     filetype = nazwa.split(".")[-1]
     #with open("../dataset/fragmenty_plstd.fasta", 'w') as output_handle:
-    with open("./dataset/genomy_" + typgenomu + ".fasta", 'w') as output_handle:
+    with open(os.path.dirname(__file__) + "/../dataset/genomy_" + typgenomu + ".fasta", 'w') as output_handle:
         for record in SeqIO.parse(nazwa, filetype):
             for wrap in textwrap.wrap(str(record.seq), dlugosc):
                 if len(wrap) == dlugosc:
