@@ -39,13 +39,13 @@ def whole_folder(nazwa, typgenomu, dlugoscfragmentu):
     Poszczególe rekordy fasty są dzielone tylko wewnątrz siebie
     Akceptuje tylko pliki o rozszerzeniu fna
     Nazwa gatunku w nazwie pliku
-    Odpowiedź w fragmenty_prcr.fasta -> folder dataset
+    Odpowiedź w genomy_prcr.fasta -> folder dataset
     :return:
     '''
 
     outfilename = 'all_' + str((int(time.time()))) + ".fna"
 
-    with open("../dataset/fragmenty_" + typgenomu + ".fasta", "w") as output_handle:
+    with open("../dataset/genomy_" + typgenomu + ".fasta", "w") as output_handle:
         for filename in glob.glob(nazwa + '/*.fna'):
             with open(filename) as handle:
                 for record in SeqIO.parse(handle, 'fasta'):
@@ -65,14 +65,14 @@ def whole_folder(nazwa, typgenomu, dlugoscfragmentu):
 
 def single_file(nazwa, typgenomu, dlugosc):
     '''
-    Wynik znajdzie się w pliku fragmenty_plstd.fasta w folderze dataset
+    Wynik znajdzie się w pliku genomy_plstd.fasta w folderze dataset
     Końcówki plików nie zostaną użyte przez program
     :param długosc:
     :return:
     '''
     filetype = nazwa.split(".")[-1]
     #with open("../dataset/fragmenty_plstd.fasta", 'w') as output_handle:
-    with open("../dataset/fragmenty_" + typgenomu + ".fasta", 'w') as output_handle:
+    with open("../dataset/genomy_" + typgenomu + ".fasta", 'w') as output_handle:
         for record in SeqIO.parse(nazwa, filetype):
             for wrap in textwrap.wrap(str(record.seq), dlugosc):
                 if len(wrap) == dlugosc:

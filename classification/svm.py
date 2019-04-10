@@ -32,5 +32,6 @@ def svm(sequances):
 
     ypred=clf.predict(X_test)
 
+    print ("wynik predykcji" + str(clf.score(X_test, y_test)))
     print(classification_report(y_test, ypred))
     print(confusion_matrix(y_test, ypred))

@@ -2,6 +2,7 @@ data_working/TOBGGENOMES/
 data_working/dataset_plstd.fasta
 dataset/fragmenty_plstd.fasta
 dataset/fragmenty_prcr.fasta
+classification/__pycache__/
 result
 result/
 .idea/MetaAnalyzer.iml
@@ -10,4 +11,5 @@ result/
 .idea/modules.xml
 .idea/workspace.xml
 .ipynb_checkpoints/
+
 
