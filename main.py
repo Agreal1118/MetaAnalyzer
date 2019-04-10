@@ -26,7 +26,7 @@ odpo = input()
 if odpo == "tak" or odpo == "T" or odpo == "t" or odpo == "TAK":
     data_working.basic_working.start("../input/TOBBGENOMES", "../input/plstd.fasta")
 
-if reprezentacja == dnavec:
+if reprezentacja == "dnavec":
     # tworzenie pustej zmiennej na późniejsze wektory dnavec. lista ta będzie zawierała je wszystkie (format wektorów, wymiary 450)
     data = []
     # Do funkcjonowania tej metody reprezentacji konieczny jest korpus językowy (można go utworzyć, co jest długie, bądź wczytać z wcześniej zapisanego pliku
