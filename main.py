@@ -26,7 +26,7 @@ reprezentacja = input()
 print("Czy konieczna jest wstępna obróbka danych? (Czy dane nie są w 2 plikach genomy_plstd.fasta i genomy_prcr.fasta odpowiednio pofragmentowane?")
 odpo = input()
 if odpo == "tak" or odpo == "T" or odpo == "t" or odpo == "TAK":
-    data_working.basic_working.start(os.path.abspath('..') + "/input/TOBBGENOMES", os.path.abspath('..') + "/input/plstd.fasta")
+    data_working.basic_working.start(os.path.abspath('.') + "/input/TOBBGENOMES", os.path.abspath('.') + "/input/plstd.fasta")
     print("Zakończono wstępną obróbkę danych")
 
 # tworzenie pustej zmiennej na późniejsze wektory dnavec. lista ta będzie zawierała je wszystkie (format wektorów, wymiary 450)
@@ -41,7 +41,7 @@ if reprezentacja == "dnavec":
               "poprzedich prób, być może nie ma to sensu. Wpisz 'zrozumiałem' ")
         przypomnienie = input()
         if przypomnienie == 'zrozumiałem':
-            model = dnavec.DnaVec([os.path.abspath('..') +'/input/genomy_plstd', os.path.abspath('..') + '/input/genomy_prcr'])
+            model = dnavec.DnaVec([os.path.abspath('.') +'/input/genomy_plstd', os.path.abspath('.') + '/input/genomy_prcr'])
     elif (z == 'N'):
         model = dnavec.DnaVec(corpus=True)
 
