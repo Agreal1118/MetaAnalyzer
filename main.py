@@ -41,7 +41,7 @@ if reprezentacja == "dnavec":
               "poprzedich prób, być może nie ma to sensu. Wpisz 'zrozumiałem' ")
         przypomnienie = input()
         if przypomnienie == 'zrozumiałem':
-            model = dnavec.DnaVec([os.path.abspath('.') +'/input/genomy_plstd', os.path.abspath('.') + '/input/genomy_prcr'])
+            model = dnavec.DnaVec([os.path.abspath('.') +'/dataset/genomy_plstd.fasta', os.path.abspath('.') + '/dataset/genomy_prcr.fasta'])
     elif (z == 'N'):
         model = dnavec.DnaVec(corpus=True)
 
@@ -50,7 +50,7 @@ if reprezentacja == "dnavec":
     # Generalnie jeżeli nie ma się więcej danych niż przy tworzeniu tego programu to własny korpus jest raczej bezsensowny
     print("Korpus wczytany pomyślnie!")
 
-    for record in SeqIO.parse("input/genomy_plstd.fasta", 'fasta'):
+    for record in SeqIO.parse("dataset/genomy_plstd.fasta", 'fasta'):
         vec = model.to_vecs(record)
         # korpus ma postać 3 x 150 wymiarów - zamiana na 1 x 450
         vec = vec[0] + vec[1] + vec[2]

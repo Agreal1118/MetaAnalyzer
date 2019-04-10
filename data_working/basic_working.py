@@ -21,16 +21,17 @@ def start(prcr, plstd, dlugoscfragmentu = 500):
     '''
 
     # Potrzbne zmienne
-    '''
+
     # Wpierw genomy prokariotów i archeonów
-    if prcr[:4] == '.fna' or prcr[:6] == '.fasta':
-        single_file(prcr)
+    if prcr[-4:] == '.fna' or prcr[-6:] == '.fasta':
+        single_file(prcr, 'prcr', dlugoscfragmentu)
     else:
         whole_folder(prcr, 'prcr', dlugoscfragmentu)
-    '''
+
     # Następnie genomy plastydowe
-    if plstd[:4] == '.fna' or plstd[:6] == '.fasta':
-        single_file(plstd)
+
+    if plstd[-4:] == '.fna' or plstd[-6:] == '.fasta':
+        single_file(plstd, 'plstd', dlugoscfragmentu)
     else:
         whole_folder(plstd, 'plstd', dlugoscfragmentu)
 
@@ -47,7 +48,7 @@ def whole_folder(nazwa, typgenomu, dlugoscfragmentu):
     '''
 
     outfilename = 'all_' + str((int(time.time()))) + ".fna"
-
+    print("Obróbka prcr")
     with open(os.path.abspath('.') + "/dataset/genomy_" + typgenomu + ".fasta", "w") as output_handle:
         for filename in glob.glob(nazwa + '/*.fna'):
             with open(filename) as handle:
@@ -73,9 +74,10 @@ def single_file(nazwa, typgenomu, dlugosc):
     :param długosc:
     :return:
     '''
+    print("Obróbka plstd")
     filetype = nazwa.split(".")[-1]
     #with open("../dataset/fragmenty_plstd.fasta", 'w') as output_handle:
-    with open(os.path.abspath('..') + "/dataset/genomy_" + typgenomu + ".fasta", 'w') as output_handle:
+    with open(os.path.abspath('.') + "/dataset/genomy_" + typgenomu + ".fasta", 'w') as output_handle:
         for record in SeqIO.parse(nazwa, filetype):
             for wrap in textwrap.wrap(str(record.seq), dlugosc):
                 if len(wrap) == dlugosc:
