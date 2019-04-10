@@ -24,7 +24,7 @@ reprezentacja = input()
 print("Czy konieczna jest wstępna obróbka danych? (Czy dane nie są w 2 plikach genomy_plstd.fasta i genomy_prcr.fasta odpowiednio pofragmentowane?")
 odpo = input()
 if odpo == "tak" or odpo == "T" or odpo == "t" or odpo == "TAK":
-    data_working.basic_working.start("../input/TOBBGENOMES", "../input/genomy_plstd.fasta")
+    data_working.basic_working.start("../input/TOBBGENOMES", "../input/plstd.fasta")
 
 if reprezentacja == dnavec:
     # tworzenie pustej zmiennej na późniejsze wektory dnavec. lista ta będzie zawierała je wszystkie (format wektorów, wymiary 450)
