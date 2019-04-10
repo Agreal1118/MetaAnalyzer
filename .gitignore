@@ -13,3 +13,11 @@ result/
 .ipynb_checkpoints/
 
 
+/dataset/dnavec/dnavec.model.bin
+/dataset/dnavec/dnaVecCorpus.txt
+/dataset/dnavec/id
+/dataset/dnavec/sample.txt
+/dataset/genomy_plstd.fasta
+/dataset/sample_plstd.fasta
+/dataset/genomy_prcr.fasta
+/dataset/sample_prcr.fasta

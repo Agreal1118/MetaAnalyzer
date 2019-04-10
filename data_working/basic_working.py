@@ -21,13 +21,13 @@ def start(prcr, plstd, dlugoscfragmentu = 500):
     '''
 
     # Potrzbne zmienne
-
+    '''
     # Wpierw genomy prokariotów i archeonów
     if prcr[:4] == '.fna' or prcr[:6] == '.fasta':
         single_file(prcr)
     else:
         whole_folder(prcr, 'prcr', dlugoscfragmentu)
-
+    '''
     # Następnie genomy plastydowe
     if plstd[:4] == '.fna' or plstd[:6] == '.fasta':
         single_file(plstd)
@@ -75,7 +75,7 @@ def single_file(nazwa, typgenomu, dlugosc):
     '''
     filetype = nazwa.split(".")[-1]
     #with open("../dataset/fragmenty_plstd.fasta", 'w') as output_handle:
-    with open(os.path.abspath('.') + "/dataset/genomy_" + typgenomu + ".fasta", 'w') as output_handle:
+    with open(os.path.abspath('..') + "/dataset/genomy_" + typgenomu + ".fasta", 'w') as output_handle:
         for record in SeqIO.parse(nazwa, filetype):
             for wrap in textwrap.wrap(str(record.seq), dlugosc):
                 if len(wrap) == dlugosc:
