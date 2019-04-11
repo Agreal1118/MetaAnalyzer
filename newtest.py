@@ -1,20 +1,25 @@
 import representation.dnavec as dnavec
 from Bio import SeqIO
+from gensim.models import word2vec
 import visualization.visualization as visualization
 
 import classification.svm as svm
+import time
 
 #model = dnavec.generate_corpusfile(['dataset/sample_plstd.fasta', 'dataset/sample_prcr.fasta'], 3, 'dataset/dnaVecCorpus.txt')
 # generate corpusse file działą
 
 dnavecs = []
-print ('Tworzyć nowy korpus? (T/N)')
+print ("Chcesz stworzyć nowy korpus, wczytać korpus, czy wczytać model (zalecane)? (nowy/korpus/model)")
 z = input()
-if (z=='T'):
+if (z=='nowy'):
     model = dnavec.DnaVec(['dataset/sample_plstd.fasta', 'dataset/sample_prcr.fasta'])
-elif (z=='N'):
+    model.save('dataset/dnavec/dnavec.model')
+elif (z=='korpus'):
     model = dnavec.DnaVec(corpus=True)
-
+    model.save('dataset/dnavec/dnavec.model')
+elif (z=='model'):
+    model = word2vec.Word2Vec.load('dataset/dnavec/dnavec.model')
 
 # generowanie modelu działa
 dnavecs = []
