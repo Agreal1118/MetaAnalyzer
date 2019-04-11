@@ -88,7 +88,7 @@ def load_dnavec(model_fname):
 
 class DnaVec(word2vec.Word2Vec):
 
-    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="dataset/dnavec/dnaVecCorpus.txt",  sg=1, window=25, min_count=1, workers=-1):
+    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="dataset/dnavec/dnaVecCorpus.txt",  sg=1, window=25, min_count=1, workers=20):
         """
         Either fname or corpus is required.
 
