@@ -1,0 +1,9 @@
+Rzeczy pomocne w obsłudze serwera:
+
+1.Screen
+    - Żeby wyświetlić jakie screeny są teraz i działają -> screen -ls
+    - Przejście do konkretnego Screena -> screen -r id_screen
+    - Wyjście ze screnna - > CTRL+A + D
+    - Wyłączenie danego screena - > CTRL+A + K
+    - Przełączenie na kolejnego screena - > CTRL+A + N
+    - Przełączenie na poprzedniego screena - > CTRL+A + P

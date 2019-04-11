@@ -18,13 +18,13 @@ elif (z=='N'):
 
 # generowanie modelu działa
 dnavecs = []
-for record in SeqIO.parse("dataset/sample_plstd.fasta", 'fasta'):
+for record in SeqIO.parse("dataset/genomy_plstd.fasta", 'fasta'):
     vec = model.to_vecs(record)
     vec = vec[0] + vec[1] + vec[2]
     #print (vec)
     vec = [vec, 'plstd']
     dnavecs.append(vec)
-for record in SeqIO.parse("dataset/sample_prcr.fasta", 'fasta'):
+for record in SeqIO.parse("dataset/genomy_prcr.fasta", 'fasta'):
     vec = model.to_vecs(record)
     vec = vec[0] + vec[1] + vec[2]
     #print(vec)

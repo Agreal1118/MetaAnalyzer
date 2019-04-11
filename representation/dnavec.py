@@ -88,7 +88,7 @@ def load_dnavec(model_fname):
 
 class DnaVec(word2vec.Word2Vec):
 
-    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="dataset/dnavec/dnaVecCorpus.txt",  sg=1, window=25, min_count=1, workers=3):
+    def __init__(self, fasta_fname=None, corpus=None, n=3, size=100, corpus_fname="dataset/dnavec/dnaVecCorpus.txt",  sg=1, window=25, min_count=1, workers=25):
         """
         Either fname or corpus is required.
 
@@ -111,7 +111,7 @@ class DnaVec(word2vec.Word2Vec):
             generate_corpusfile(fasta_fname, n, corpus_fname)
             print('Wczytywanie korpusu - to może trochę potrwać...')
             corpus = word2vec.Text8Corpus(corpus_fname)
-        if fasta_fname is None and corpus == True:
+        if fasta_fname is None and corpus is True:
             print('Wczytywanie korpusu - to może trochę potrwać...')
             corpus = word2vec.Text8Corpus(corpus_fname)
 
