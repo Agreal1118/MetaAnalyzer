@@ -9,6 +9,7 @@ from sklearn.model_selection import RandomizedSearchCV
 import numpy as np
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
+import gc
 
 
 def randomforest(sequances):
@@ -26,10 +27,15 @@ def randomforest(sequances):
         0      plstd
         1      plstd
     '''
+    labels = None #czyszczenie pamięci
+    gc.collect()
 
     pca = PCA(n_components=2)
     mainComponent = pca.fit_transform(x)
     mainDf = pd.DataFrame(data=mainComponent)
+
+    x = None
+    gc.collect()
 
     X_train, X_test, y_train, y_test = train_test_split(mainDf, y, test_size=0.33, random_state=42)
 

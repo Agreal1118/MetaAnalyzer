@@ -8,16 +8,18 @@ from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import RandomizedSearchCV
 import numpy as np
 from sklearn.svm import SVC
-
+import gc
 
 
 def svm(sequances):
 
     # tworzenie modelu o odpowiednich paramterach
-    clf = sv.SVC(gamma='scale')
 
+    clf = sv.SVC(gamma='scale')
+    print("Model SVC wczytany")
 
     labels = pd.DataFrame.from_records(sequances)
+    print ("z sekwencji stworzono pd dataframe")
     x = pd.DataFrame.from_records(labels[0])
     '''
     Wygląd x
@@ -32,6 +34,9 @@ def svm(sequances):
         1      plstd
     '''
 
+    labels=None
+    gc.collect()
+
     #standardlabels = StandardScaler().fit_transform(x)
 
 
@@ -40,11 +45,18 @@ def svm(sequances):
     mainComponent = pca.fit_transform(x)
     mainDf = pd.DataFrame(data=mainComponent)
 
+    print("redukcja wymiaru skończona")
+
+    x = None
+    gc.collect()
+
     X_train, X_test, y_train, y_test = train_test_split(mainDf, y, test_size = 0.33, random_state = 42)
 
     clf.fit(X_train, y_train)
+    print("fit modelu skończon")
 
     ypred=clf.predict(X_test)
+    print("predykcja skończona")
 
     print ("wynik predykcji to " + str(clf.score(X_test, y_test)))
     print(classification_report(y_test, ypred))
