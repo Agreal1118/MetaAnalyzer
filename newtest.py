@@ -77,10 +77,12 @@ elif (z=="gotowy"):
 
 
 
-print ("Klasyfikacja? (T/N)")
+print ("Klasyfikacja? (svm/rf)")
 z = input()
-if z=='T':
+if z=='svm':
     svm.svm(dnavecs)
+
+if z=='rf':
     rf.randomforest(dnavecs)
 
 print("wizualizajca? (T/N)")

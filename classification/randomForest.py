@@ -60,7 +60,8 @@ def randomforest(sequances):
     # Train classifier using optimal hyperparameter values
     # We could have also gotten this model out from randomCV.best_estimator_
     rf = RandomForestClassifier(n_estimators=best_n_estim,
-                                max_features=best_max_features)
+                                max_features=best_max_features,
+                                n_jobs=-2)
 
     rf.fit(X_train, y_train)
     rf_predictions = rf.predict(X_test)
