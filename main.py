@@ -12,6 +12,7 @@ import data_working.basic_working
 import os.path
 
 
+
 print ("Witaj w projekcie licencjackim dotyczącym klasyfikacji DNA! Pamiętaj o umieszczeniu koniecznych danych wejściowych (w "
        "formie pojedynczego pliku fasta zawierajacego w każdym rekordzie jeden pełny genom i nazwę gatunku w id,"
        "bądź w formie całego folderu, gdzie każdy plik jest jednym gatunkiem, każdy rekord fragmentem genomu, a nazwa pliku to nazwa genomu)"
@@ -49,6 +50,8 @@ if reprezentacja == "dnavec":
 
     # Generalnie jeżeli nie ma się więcej danych niż przy tworzeniu tego programu to własny korpus jest raczej bezsensowny
     print("Korpus wczytany pomyślnie!")
+
+
 
     for record in SeqIO.parse("dataset/genomy_plstd.fasta", 'fasta'):
         vec = model.to_vecs(record)

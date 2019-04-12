@@ -3,7 +3,7 @@ from Bio import SeqIO
 from gensim.models import word2vec
 import visualization.visualization as visualization
 import numpy as np
-
+import classification.randomForest as rf
 import classification.svm as svm
 import time
 
@@ -68,14 +68,24 @@ elif (z=='model'):
         vec = [vec, 'prcr']
         dnavecs.append(vec)
     np.save("dataset/dnavec/nmp.npy", dnavecs)
-
 elif (z=="gotowy"):
+    czas = time.time()
+
     dnavecs = np.load("dataset/dnavec/nmp.npy")
 
+    print("wczytanie " + str(time.time()-czas))
 
 
-#visualization.pca(dnavecs)
-#visualization.tsnesolo(dnavecs)
-#visualization.tsnePcaReduction(dnavecs)
 
-#svm.svm(dnavecs)
+print ("Klasyfikacja? (T/N)")
+z = input()
+if z=='T':
+    svm.svm(dnavecs)
+    rf.randomforest(dnavecs)
+
+print("wizualizajca? (T/N)")
+z = input()
+if z=='T':
+    visualization.pca(dnavecs)
+    visualization.tsnesolo(dnavecs)
+    visualization.tsnePcaReduction(dnavecs)
