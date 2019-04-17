@@ -67,6 +67,8 @@ def randomforest(sequances):
     # We could have also gotten this model out from randomCV.best_estimator_
     rf = RandomForestClassifier(n_estimators=best_n_estim,
                                 max_features=best_max_features,
+                                class_weight='balanced',
+                                n_jobs=20
                                 )
 
     rf.fit(X_train, y_train)
