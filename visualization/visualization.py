@@ -23,10 +23,11 @@ def pca(labels):
     #print(standardlabels)
     #standardlabels = x
     #teraz sprowadzamy liczbę wymiarów do 2
-    pca = PCA(n_components=2)
 
-    mainComponent = pca.fit_transform(standardlabels)
-    mainDf = pd.DataFrame(data=mainComponent)
+    #pca = PCA(n_components=2)
+    #mainComponent = pca.fit_transform(standardlabels)
+    #mainDf = pd.DataFrame(data=mainComponent)
+    mainDf = x
     #print(mainDf)
 
     #mówi o tym ile informacji trzyma każdy z komponentów, nie sumuje się do 100

@@ -43,7 +43,7 @@ def randomforest(labels):
     print(hyperparameters)
 
     # Run randomized search
-    randomCV = RandomizedSearchCV(RandomForestClassifier(), param_distributions=hyperparameters, n_iter=20)
+    randomCV = RandomizedSearchCV(RandomForestClassifier(), param_distributions=hyperparameters, n_iter=20, n_jobs=20)
     randomCV.fit(X_train, y_train)
 
     # Identify optimal hyperparameter values
