@@ -5,14 +5,14 @@ from matplotlib import pyplot as plt
 from sklearn.manifold import TSNE
 
 
-def pca(sequances):
+def pca(labels):
     '''
 
     Funkcja bierze dwuwymiarową listę wektorów [sekwencja, pochodzenie] i wyświetlna ją w atrakcyjnej formie
     '''
 
     #tworzymy macierz danych akceptowaną przez pandas
-    labels = pd.DataFrame.from_records(sequances)
+    #labels = pd.DataFrame.from_records(sequances)
     x = pd.DataFrame.from_records(labels[0])
     y = labels[1]
     #print (x[0])
@@ -63,9 +63,9 @@ def pca(sequances):
     plt.savefig('result/pca.png')
 
 
-def tsnesolo(sequances):
+def tsnesolo(labels):
 
-    labels = pd.DataFrame.from_records(sequances)
+    #labels = pd.DataFrame.from_records(sequances)
     x = pd.DataFrame.from_records(labels[0])
     y = labels[1]
 
@@ -99,11 +99,11 @@ def tsnesolo(sequances):
     plt.savefig('result/tsnesolo.png')
 
 
-def tsnePcaReduction(sequances):
+def tsnePcaReduction(labels):
 
 
 
-    labels = pd.DataFrame.from_records(sequances)
+    #labels = pd.DataFrame.from_records(sequances)
     x = pd.DataFrame.from_records(labels[0])
     y = labels[1]
 

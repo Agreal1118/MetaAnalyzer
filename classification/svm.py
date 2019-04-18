@@ -11,46 +11,31 @@ from sklearn.svm import SVC
 import gc
 
 
-def svm(sequances):
+def svm(labels):
 
     # tworzenie modelu o odpowiednich paramterach
 
     clf = sv.SVC(gamma='scale')
     print("Model SVC wczytany")
 
-    labels = pd.DataFrame.from_records(sequances)
-    print ("z sekwencji stworzono pd dataframe")
+    '''
+    wygląd labels
+                                                   0      1
+    0        [-8.213443603919687, 3.915492349439239]  plstd
+    1       [4.103066531114637, 0.19115485017195025]  plstd
+    2    [-3.6886699085529813, -0.38134145597406094]  plstd
+    '''
+
     x = pd.DataFrame.from_records(labels[0])
-    '''
-    Wygląd x
-                    0          1          2   ...         97         98          99
-        0     4.991699   5.341255 -32.386837  ...  22.653732 -12.949523 -109.862022
-        1    13.883627  20.495790 -30.535908  ...  40.336170  -1.560726 -117.623039
-        '''
     y = labels[1]
-    '''
-    Wygląd y
-        0      plstd
-        1      plstd
-    '''
 
     labels=None
     gc.collect()
 
-    #standardlabels = StandardScaler().fit_transform(x)
-
-
-# Redukcja wymiarowa
-    pca = PCA(n_components=2)
-    mainComponent = pca.fit_transform(x)
-    mainDf = pd.DataFrame(data=mainComponent)
-
-    print("redukcja wymiaru skończona")
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = 0.33, random_state = 42)
 
     x = None
     gc.collect()
-
-    X_train, X_test, y_train, y_test = train_test_split(mainDf, y, test_size = 0.33, random_state = 42)
 
     clf.fit(X_train, y_train)
     print("fit modelu skończon")

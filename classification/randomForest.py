@@ -12,32 +12,19 @@ from sklearn.ensemble import RandomForestClassifier
 import gc
 
 
-def randomforest(sequances):
-    labels = pd.DataFrame.from_records(sequances)
+def randomforest(labels):
+
     x = pd.DataFrame.from_records(labels[0])
-    '''
-    Wygląd x
-                    0          1          2   ...         97         98          99
-        0     4.991699   5.341255 -32.386837  ...  22.653732 -12.949523 -109.862022
-        1    13.883627  20.495790 -30.535908  ...  40.336170  -1.560726 -117.623039
-        '''
     y = labels[1]
-    '''
-    Wygląd y
-        0      plstd
-        1      plstd
-    '''
+
     labels = None #czyszczenie pamięci
     gc.collect()
 
-    pca = PCA(n_components=2)
-    mainComponent = pca.fit_transform(x)
-    mainDf = pd.DataFrame(data=mainComponent)
 
-    x = None
-    gc.collect()
 
-    X_train, X_test, y_train, y_test = train_test_split(mainDf, y, test_size=0.33, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42)
+
+
 
     # Designate distributions to sample hyperparameters from
     n_estimators = np.random.uniform(70, 80, 5).astype(int)
@@ -45,7 +32,10 @@ def randomforest(sequances):
 
     # Check max_features>0 & max_features<=total number of features
     max_features[max_features <= 0] = 1
-    max_features[max_features > mainDf.shape[1]] = mainDf.shape[1]
+    max_features[max_features > x.shape[1]] = x.shape[1]
+
+    x = None
+    gc.collect()
 
     hyperparameters = {'n_estimators': list(n_estimators),
                        'max_features': list(max_features)}
